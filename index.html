@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .holder
+        {
+            margin: 0 auto;
+            width: 600px;
+            height: 600px;
+            background-color: darkgray;
+            border:black solid 1px;
+        }
+        .cell
+        {
+            float: left;
+            text-align: center;
+            font-size: 60px;
+            display: inline-block;
+            height: 199px;
+            line-height: 199px;
+            width: 199px;
+            border-bottom:black solid 1px; ;
+
+        }
+        .cell:hover
+        {
+            background-color: gray;
+            cursor: pointer;
+        }
+        .leftcell
+        {
+            border-left: black solid 1px;
+        }
+        .rightcell
+        {
+            border-right: black solid 1px;
+        }
+        #turn
+        {
+            width: 600px;
+            margin: 0 auto 20px auto;
+            background-color: gainsboro;
+            color: red;
+            font-size: 30px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        var xo;
+        function playgame(id)
+        {
+            if(xo == 'X')
+            {
+                xo = 'O'
+                document.getElementById('turn').innerText='X Turn';
+            }
+            else
+            {
+                xo = 'X';
+                document.getElementById('turn').innerText='O Turn';
+            }
+            var div = document.getElementById(id);
+            if(div.innerHTML=='')
+                div.innerText +=xo;
+            else
+                alert('error');
+
+        }
+    </script>
+</head>
+<body>
+<div id="turn">X Turn</div>
+<div class="holder">
+    <div id="11" class="cell rightcell" onclick="playgame(11)"></div>
+    <div id="12" class="cell" onclick="playgame(12)"></div>
+    <div id="13" class="cell leftcell" onclick="playgame(13)"></div>
+    <div id="21" class="cell rightcell" onclick="playgame(21)"></div>
+    <div id="22" class="cell" onclick="playgame(22)"></div>
+    <div id="23" class="cell leftcell" onclick="playgame(23)"></div>
+    <div id="31" class="cell rightcell" onclick="playgame(31)"></div>
+    <div id="32" class="cell" onclick="playgame(32)"></div>
+    <div id="33" class="cell leftcell" onclick="playgame(33)"></div>
+</div>
+</body>
+</html>
