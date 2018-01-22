@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title></title>
     <style>
-        .holder
+        #holder
         {
             margin: 0 auto;
             width: 600px;
@@ -22,7 +22,6 @@
             line-height: 199px;
             width: 199px;
             border-bottom:black solid 1px; ;
-
         }
         .cell:hover
         {
@@ -46,11 +45,19 @@
             font-size: 30px;
             text-align: center;
         }
+        .disable
+        {
+            pointer-events: none;
+        }
     </style>
     <script>
+        var sq = [];
         var xo;
+        var count=0;
+        var haswiner=false;
         function playgame(id)
         {
+            count++;
             if(xo == 'X')
             {
                 xo = 'O'
@@ -63,25 +70,63 @@
             }
             var div = document.getElementById(id);
             if(div.innerHTML=='')
+            {
                 div.innerText +=xo;
+                sq[id]=xo;
+            }
             else
                 alert('error');
 
+
+        
+        calcwin();
+        }
+        var win = [
+            [0,1,2],
+            [3,4,5],
+            [6,7,8],
+            [0,3,6],
+            [1,4,7],
+            [2,5,8],
+            [0,4,8],
+            [2,4,6]
+
+        ];
+        function calcwin()
+        {
+            for(i=0;i<win.length;i++)
+            {
+                a=win[i][0];
+                b=win[i][1];
+                c=win[i][2];
+                if((sq[a])&&(sq[a]==sq[b])&&(sq[a]==sq[c]))
+                {
+                document.getElementById('turn').innerText="winer is "+ sq[a];
+                document.getElementById('holder').className = "disable";
+                haswiner=true;
+                }
+                if ((count==9)&&(haswiner==false))
+                {
+                    document.getElementById('turn').innerText='Game is draw';
+                    document.getElementById('holder').className = "disable";
+                }
+
+            }
         }
     </script>
 </head>
 <body>
 <div id="turn">X Turn</div>
-<div class="holder">
-    <div id="11" class="cell rightcell" onclick="playgame(11)"></div>
-    <div id="12" class="cell" onclick="playgame(12)"></div>
-    <div id="13" class="cell leftcell" onclick="playgame(13)"></div>
-    <div id="21" class="cell rightcell" onclick="playgame(21)"></div>
-    <div id="22" class="cell" onclick="playgame(22)"></div>
-    <div id="23" class="cell leftcell" onclick="playgame(23)"></div>
-    <div id="31" class="cell rightcell" onclick="playgame(31)"></div>
-    <div id="32" class="cell" onclick="playgame(32)"></div>
-    <div id="33" class="cell leftcell" onclick="playgame(33)"></div>
+<div  id="holder">
+    <div id="0" class="cell rightcell" onclick="playgame(0)"></div>
+    <div id="1" class="cell" onclick="playgame(1)"></div>
+    <div id="2" class="cell leftcell" onclick="playgame(2)"></div>
+    <div id="3" class="cell rightcell" onclick="playgame(3)"></div>
+    <div id="4" class="cell" onclick="playgame(4)"></div>
+    <div id="5" class="cell leftcell" onclick="playgame(5)"></div>
+    <div id="6" class="cell rightcell" onclick="playgame(6)"></div>
+    <div id="7" class="cell" onclick="playgame(7)"></div>
+    <div id="8" class="cell leftcell" onclick="playgame(8)"></div>
 </div>
 </body>
 </html>
